@@ -1,11 +1,24 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./style.css";
 import { SearchOutlined, AudioFilled, SlidersFilled,} from "@ant-design/icons";
 import EventCard from "../../Components/EventCard";
 import Card from "../../Components/Card";
-export default function Events({setSwitchNav}) {
+import { useDispatch, useSelector } from "react-redux";
+import { GetEvents } from "../../Actions/eventsAction";
+
+export default function Events() {
+  const dispatch = useDispatch();
+  const getEventsData = useSelector(state=>state.EventsReducer.getEventsData)
+  const totalCount= useSelector(state=>state.EventsReducer.totalCount)
+
+
+  useEffect(() => {
+    dispatch(GetEvents())
+  },[])
+
   return (
     <>
+    {console.log(getEventsData,'getEventsData')}
       <div className="event-container">
         <div className="event-container__wrapper">
           <div className="container">
@@ -34,7 +47,7 @@ export default function Events({setSwitchNav}) {
           </div>
         </div>
       </div>
-      <EventCard />
+      <EventCard  count={totalCount}/>
       <div className="recommended_events">
         <div className="recommended_events-wrapper">
           <div className="container">
@@ -57,7 +70,7 @@ export default function Events({setSwitchNav}) {
           <div className="container">
           <div className="row" style={{overflowX:"scroll", flexWrap:"nowrap", padding:"10px 0"}}>
               <div className="col-lg-4 col-md-4 col-sm-6 col-xs-6" >
-              <Card setSwitchNav={setSwitchNav}/>
+              <Card />
               </div>
               <div className="col-lg-4 col-md-4 col-sm-6 col-xs-6" >
               <Card/>

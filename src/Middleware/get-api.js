@@ -1,23 +1,11 @@
 import { GET_API } from './symbols';
-import { isValidJSON } from './index'
-
+import axios from 'axios'
 function getApi(endpoint){
-    let config = {
-        method: 'GET'
-    }
 
-
-    return fetch(endpoint, config)
+    return axios.get(endpoint)
         .then((response) => {
             if (response.status === 200) {
-                return response.text().then(data => {
-                    return isValidJSON(data) ? ({data: JSON.parse(data), status: response.status}) : ({
-                        data: {
-                            error: true,
-                            message: "Error while parsing the json."
-                        }, status: response.status
-                    })
-                })
+                return ({data: response.data, status: response.status}) 
             } else {
                 return response.json().then(data =>
                     ({data, status: response.status})

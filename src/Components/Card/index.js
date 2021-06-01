@@ -3,7 +3,7 @@ import './style.css'
 import { CalendarOutlined,HeartOutlined } from "@ant-design/icons";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import {Link} from 'react-router-dom'
-export default function Card({setSwitchNav}) {
+export default function Card() {
     return (
         <div className="card_item">
         <div className="like">
@@ -17,7 +17,7 @@ export default function Card({setSwitchNav}) {
                 20 oct.
             </div>
             <div className="card-body__header">
-            <Link onClick={()=>setSwitchNav(true)} className="card-link" to="/event/1"><h5>Techno Fair 2020</h5></Link>
+            <Link  className="card-link" to="/event/1"><h5>Techno Fair 2020</h5></Link>
             </div>
             <div className="card-body__content">
                 <div className="location">
