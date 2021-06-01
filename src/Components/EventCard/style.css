@@ -1,0 +1,67 @@
+
+
+  .mini-card{
+    display: block;
+  }
+
+  .mini-card__content-wrapper{
+    border-radius: 25px;
+    min-width: 80%;
+    min-height: 100px;
+    background: #fff;
+    flex: 0 0 50%;
+    top: -60px;
+    position: relative;
+    box-shadow: 0 20px 40px rgb(20 20 20 / 16%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mini-card__content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    
+  }
+  .mini-card__content h4{
+      color: grey;
+      font-weight:400;
+      font-size: 20px;
+  }
+  h4 span{
+      color:#FE8B88;
+  }
+  .check-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FE8B88;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    color: #fff;
+  }
+
+
+  .recommended_events{
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+  }
+
+  .recommended_events-wrapper{
+      width: 80%;
+  }
+
+  .recommended_events-wrapper h2{
+      flex: 1 1;
+  }
+
+  .recommended_events a{
+      color: #FE8B88;
+      text-decoration: underline;
+  }

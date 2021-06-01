@@ -1,0 +1,76 @@
+.image-container{
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    width: 850px;
+    height: 80%;
+}
+
+.view-event-card{
+    padding: 20px 0px;
+    height: 100%;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px #00077b33;
+    transition: .4s;
+    position: relative;
+}
+
+.view-event-card_container{
+    margin-top: 5rem;
+}
+
+.card-time{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.card-time > .time{
+    display: flex;
+    color: #FE8B88;
+    font-size: 14px;
+    align-items: center;
+}
+
+.card-time > .date{
+    display: flex;
+    color: #FE8B88;
+    font-size: 14px;
+    align-items: center;
+}
+
+.card-time p{
+    margin: 0 15px;
+}
+
+.card-header .location p{
+    margin: 0 15px;
+    color: gray
+}
+
+.description{
+    margin-top: 20px;
+    color:rgb(109, 107, 107);
+}
+
+.attendies{
+    display: flex;
+    align-items: center;
+}
+
+.attendies p{
+    margin: 2px 15px;
+    color: #FE8B88;
+}
+
+.price{
+    display: block;
+    margin-top: 20px;
+    text-align:right;
+}
+
+.price span{
+    color: #FE8B88;
+}

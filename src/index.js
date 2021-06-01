@@ -9,6 +9,7 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import "./Static/css/primary.css";
 import "./Static/css/grid.css";
+import 'antd/dist/antd.css';
 import combineReducers from './Reducers';
 
 import apiMiddleware from './Middleware';

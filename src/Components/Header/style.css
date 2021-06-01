@@ -1,0 +1,101 @@
+.header-conatiner{
+    width: 100%;
+    height: 90px;
+    background: #3448C0;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    color: #fff;
+}
+
+.header-conatiner.active{
+    width: 100%;
+    height: 90px;
+    background: #F3F6FF;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    color: gray;
+}
+
+.header-conatiner.active .wrapper-right__hamburger > span{
+    background-color: gray;
+}
+
+.wrapper-conatiner{
+    padding: 20px 30px 5px 30px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+.wrapper-left {
+    display: flex;
+    align-items:center;
+    flex: 1 1;
+
+}
+.wrapper-left > .logo{
+    font-size: 40px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    margin-right: 40px
+}
+.item-container{
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+.item-datecontainer{
+    display: grid;
+}
+
+.item-datecontainer> span{
+    font-size: 15px;
+    font-weight:500;
+}
+
+.item-container > .icon{
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.item-container > span{
+    font-size: 15px;
+    font-weight:500;
+}
+.wrapper-right{
+    flex: 0 0 auto;
+    padding: 12px;
+}
+.wrapper-right > .wrapper-right__hamburger{
+    width:32px;
+    height:25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    cursor: pointer;
+    align-items: flex-end;
+}
+.wrapper-right__hamburger >span{
+    width: 100%;
+    height:3px;
+    background-color: #fff;
+    transform-origin: left;
+    transition: all 2s ease;
+}
+.line2{
+    width: 70% !important;
+}
+
+
+
+
+.wrapper-right > span{
+    margin-right: 20px;
+}
+
+.logo>.ant-badge{
+    border-radius:10px;
+    box-shadow: 0px 6px 12px #00077b33;
+}

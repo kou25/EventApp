@@ -257,5 +257,17 @@ hr {
     border-top: 1px solid #eeeeee;
 }
 main{
-    height:100vh;
+    min-height:150vh;
+    background: #F3F6FF
 }
+
+.sections{
+    width:100%;
+    height: calc(100vh - 90px);
+    position: relative;
+    scroll-behavior: smooth;
+    top: 90px;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+}
+
