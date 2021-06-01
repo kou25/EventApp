@@ -40,7 +40,7 @@
   }
   .card-body__content p{
       color: #3B4EC2;
-      margin: 0 15px;
+      margin: 0 5px;
   }
   .location, .date{
       display: flex;

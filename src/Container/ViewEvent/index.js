@@ -4,21 +4,50 @@ import { ClockCircleOutlined,CalendarOutlined} from "@ant-design/icons";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Avatar } from 'antd';
 import { UserOutlined, AntDesignOutlined } from '@ant-design/icons';
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import { GetEventDetails } from "../../Actions/eventsAction";
+import { Spin } from "antd";
 
 export default function ViewEvent({setSwitchNav}) {
 
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const getEventDetailData = useSelector(
+    (state) => state.EventsReducer.getEventDetailData
+  );
+  const getEventDetailLoading = useSelector(
+    (state) => state.EventsReducer.getEventDetailLoading
+  );
+
+  const [getUrl, setGetUrl]=React.useState('')
   React.useEffect(()=>{
     setSwitchNav(true)
     window.scrollTo(0,0)
   },[])
+
+
+  React.useEffect(()=>{
+    dispatch(GetEventDetails(id))
+  },[id])
+
+
+  React.useEffect(()=>{
+    const imageUrl = getEventDetailData?.images.find(element => element?.width >= 2000)
+    setGetUrl(imageUrl?.url)
+  },[getEventDetailData])
+  
+
   return (
     <>
+    <Spin size="large" spinning={getEventDetailLoading}>
+    {console.log(getEventDetailData,'------getEventDetailData------',)}
       <div className="view-event">
         <div className="container">
           <div className="row">
             <div className="col-12">
               <div className="image-container">
-                <img src="https://static.vecteezy.com/system/resources/previews/000/228/437/original/female-developer-vector-illustration.jpg" />
+                <img src={getUrl} />
               </div>
             </div>
           </div>
@@ -41,13 +70,13 @@ export default function ViewEvent({setSwitchNav}) {
                 </div>
                 <div className="card-header">
                     <div className="col-12">
-                        <h1>Techno fair 2020</h1>
+                        <h1>{getEventDetailData?.name}</h1>
                         <div className="location">
                             <LocationOnIcon/>
                             <p>Hilton, San Francisco</p>
                         </div>
                         <div className="description">
-                          <p>heloo hi abckjasnckh as,mcbnkjasncbasikuncka.snch hdjbciundklnc ahkbcjnsoicn</p>
+                          <p>{getEventDetailData?.info}</p>
                         </div>
                         <div className="attendies">
                         <Avatar.Group
@@ -96,6 +125,7 @@ export default function ViewEvent({setSwitchNav}) {
           </div>
         </div>
       </div>
+      </Spin>
     </>
   );
 }
