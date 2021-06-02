@@ -6,6 +6,7 @@ import Card from "../../Components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { GetEvents, SearchEvents } from "../../Actions/eventsAction";
 import { Spin,Empty } from "antd";
+import "../../Static/css/grid.css";
 
 
 //Implemented debounced API calls
@@ -69,7 +70,8 @@ export default function Events() {
                     <h3>253 Events Around You</h3>
                   </div>
                 </div>
-                <div className="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                <div className="search__container"> 
+                <div className="col-lg-11 col-md-11 col-sm-8 col-xs-8">
                   <div className="input-container">
                     <div className="input-search__container">
                       <SearchOutlined />
@@ -82,6 +84,7 @@ export default function Events() {
                   <div className="filter-container">
                     <SlidersFilled />
                   </div>
+                </div>
                 </div>
               </div>
             </div>
