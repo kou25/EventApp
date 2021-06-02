@@ -4,11 +4,30 @@ import { SearchOutlined, AudioFilled, SlidersFilled } from "@ant-design/icons";
 import EventCard from "../../Components/EventCard";
 import Card from "../../Components/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { GetEvents } from "../../Actions/eventsAction";
-import { Spin } from "antd";
+import { GetEvents, SearchEvents } from "../../Actions/eventsAction";
+import { Spin,Empty } from "antd";
+
+
+//Implemented debounced API calls
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const context = this;
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      timeout = null;
+      func.apply(context, args);
+    }, wait);
+  };
+}
 
 export default function Events() {
   const dispatch = useDispatch();
+
+  //debouce call 
+  const debounceOnChange = React.useCallback(debounce(onChange, 400), []);
+
+  //reducer props
   const getEventsData = useSelector(
     (state) => state.EventsReducer.getEventsData
   );
@@ -17,9 +36,25 @@ export default function Events() {
   );
   const totalCount = useSelector((state) => state.EventsReducer.totalCount);
 
+
+  //api call
   useEffect(() => {
     dispatch(GetEvents());
   }, []);
+
+
+  //onchange for search
+  function onChange(value) {
+    if(value!==''){
+      dispatch(SearchEvents(value))
+      window.scrollTo(500,500)
+    }
+    else{
+      dispatch(GetEvents());
+      window.scrollTo(500,500)
+    }
+  }
+
 
   return (
     <>
@@ -39,7 +74,7 @@ export default function Events() {
                   <div className="input-container">
                     <div className="input-search__container">
                       <SearchOutlined />
-                      <input type="text" placeholder="Find Events" />
+                      <input type="text" placeholder="Find Events" onChange={e => debounceOnChange(e.target.value)}/>
                       <AudioFilled />
                     </div>
                   </div>
@@ -83,11 +118,17 @@ export default function Events() {
                   paddingRight: "5rem",
                 }}
               >
-                {getEventsData?._embedded?.events.map((data, i) => (
+                {getEventsData?._embedded?.events.length
+                ? getEventsData?._embedded?.events.map((data, i) => (
                   <div key={i} className="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <Card data={data} />
                   </div>
-                ))}
+                ))
+              :
+              <div className="col-12">
+              <Empty />
+              </div>
+              }
               </div>
             </div>
           </div>

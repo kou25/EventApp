@@ -267,7 +267,6 @@ main{
     position: relative;
     scroll-behavior: smooth;
     top: 90px;
-    scroll-snap-type: y mandatory;
     scrollbar-width: none;
 }
 

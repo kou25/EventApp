@@ -15,6 +15,7 @@
     box-shadow: 0px 5px 10px #00077b33;
     transition: .4s;
     position: relative;
+    z-index: 3;
 }
 
 .view-event-card_container{
@@ -69,8 +70,14 @@
     display: block;
     margin-top: 20px;
     text-align:right;
+    margin-right: 20px;
 }
 
 .price span{
     color: #FE8B88;
+}
+
+.price > h3 > .strike{
+    text-decoration: line-through;
+    font-size: 15px;
 }

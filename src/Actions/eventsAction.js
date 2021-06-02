@@ -5,6 +5,9 @@ import {
   GET_EVENT_DETAILS_REQUEST,
   GET_EVENT_DETAILS_SUCCESS,
   GET_EVENT_DETAILS_FAILURE,
+  SEARCH_EVENT_VENUE_REQUEST,
+  SEARCH_EVENT_VENUE_SUCCESS,
+  SEARCH_EVENT_VENUE_FAILURE,
 } from "../Constants/eventConstants";
 import { GET_API } from "../Middleware/symbols";
 
@@ -29,6 +32,36 @@ export function GetEventDetails(id) {
         GET_EVENT_DETAILS_REQUEST,
         GET_EVENT_DETAILS_SUCCESS,
         GET_EVENT_DETAILS_FAILURE,
+      ],
+      authenticated: true,
+    },
+  };
+}
+
+export function SearchEvents(keyword) {
+  return {
+    [GET_API]: {
+      endpoint:
+        BASE_URL +
+        "/events.json?keyword=" +
+        keyword +
+        "&source=universe&apikey=" +
+        API_KEY,
+      types: [GET_EVENTS_REQUEST, GET_EVENTS_SUCCESS, GET_EVENTS_FAILURE],
+      authenticated: true,
+    },
+  };
+}
+
+export function SearchVenue(keyword) {
+  return {
+    [GET_API]: {
+      endpoint:
+        BASE_URL + "/venues.json?keyword=" + keyword + "&apikey=" + API_KEY,
+      types: [
+        SEARCH_EVENT_VENUE_REQUEST,
+        SEARCH_EVENT_VENUE_SUCCESS,
+        SEARCH_EVENT_VENUE_FAILURE,
       ],
       authenticated: true,
     },
