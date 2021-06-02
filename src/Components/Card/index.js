@@ -1,21 +1,73 @@
 import React from "react";
 import "./style.css";
-import { CalendarOutlined, HeartOutlined } from "@ant-design/icons";
+import {
+  CalendarOutlined,
+  HeartOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Link } from "react-router-dom";
 import moment from "moment";
-export default function Card({ data }) {
-  const [getUrl, setGetUrl] = React.useState("");
+import { useDispatch, useSelector } from "react-redux";
+import { updateLikedData } from "../../Actions/eventsAction";
 
+let localState=[]
+export default function Card({ data }) {
+  const dispatch = useDispatch();
+  const [getUrl, setGetUrl] = React.useState("");
+  const [like, setLike] = React.useState(false);
+  const liked = useSelector(
+    (state) => state.EventsReducer.liked
+  );
+
+  //get url of specified size
   React.useEffect(() => {
     const imageUrl = data?.images.find((element) => element?.width >= 2000);
     setGetUrl(imageUrl?.url);
   }, [data]);
 
+
+
+  //set like even after reload
+  React.useEffect(() => {
+    if(localStorage.getItem('liked')) {
+        const getData = JSON.parse(localStorage.getItem('liked'))
+        getData.forEach((element )=> {
+        if(element  === data?.id){
+            setLike(true)
+          }
+      });
+      dispatch(updateLikedData(getData))
+    }
+  }, []);
+
+
+  //handle like function
+  const HandleLike = (id) => {
+    localState=liked
+    setLike(!like);
+    if(like){
+        let arr = localState.filter(item => item !== id)
+        dispatch(updateLikedData(arr))
+        localStorage.setItem('liked', JSON.stringify(arr))
+    }
+    else{
+        localState=[...liked,id]
+        dispatch(updateLikedData(localState))
+        localStorage.setItem('liked', JSON.stringify(localState))
+    }
+
+  };
+
+  
   return (
     <div className="card_item">
       <div className="like">
-        <HeartOutlined />
+        {like ? (
+          <HeartFilled onClick={() => HandleLike(data?.id)} />
+        ) : (
+          <HeartOutlined onClick={() => HandleLike(data?.id)} />
+        )}
       </div>
       <div className="card-image">
         <img src={getUrl} />

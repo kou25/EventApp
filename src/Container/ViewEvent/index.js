@@ -88,7 +88,6 @@ export default function ViewEvent({ setSwitchNav }) {
         size="large"
         spinning={getEventDetailLoading || searchEventVenueLoading}
       >
-        {console.log(searchEventVenueData, "------getEventDetailData------")}
         <div className="view-event">
           <div className="container">
             <div className="row">

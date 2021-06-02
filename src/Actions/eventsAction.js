@@ -8,6 +8,7 @@ import {
   SEARCH_EVENT_VENUE_REQUEST,
   SEARCH_EVENT_VENUE_SUCCESS,
   SEARCH_EVENT_VENUE_FAILURE,
+  UPDATE_LIKE,
 } from "../Constants/eventConstants";
 import { GET_API } from "../Middleware/symbols";
 
@@ -66,4 +67,12 @@ export function SearchVenue(keyword) {
       authenticated: true,
     },
   };
+}
+
+
+export function updateLikedData(data)
+{  
+    return  {
+        type: UPDATE_LIKE, data
+    }
 }

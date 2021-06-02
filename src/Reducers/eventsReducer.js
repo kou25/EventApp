@@ -8,6 +8,7 @@ import {
   SEARCH_EVENT_VENUE_FAILURE,
   SEARCH_EVENT_VENUE_REQUEST,
   SEARCH_EVENT_VENUE_SUCCESS,
+  UPDATE_LIKE,
 } from "../Constants/eventConstants";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   searchEventVenueData: {},
   searchEventVenueLoading: false,
   searchEventVenueError: false,
+  liked:[]
 };
 
 export default function EventsReducer(state = initialState, action) {
@@ -76,6 +78,10 @@ export default function EventsReducer(state = initialState, action) {
         searchEventVenueLoading: false,
         searchEventVenueError: true,
         searchEventVenueData: [],
+      });
+    case UPDATE_LIKE:
+      return Object.assign({}, state, {
+       liked:action.data
       });
 
     default:

@@ -58,7 +58,6 @@ export default function Events() {
 
   return (
     <>
-      {console.log(getEventsData, "getEventsData")}
       <Spin size="large" spinning={getEventsLoading}>
         <div className="event-container">
           <div className="event-container__wrapper">

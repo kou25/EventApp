@@ -4,7 +4,7 @@ import RouteContainer from './Routes';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { routerMiddleware } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from "history";
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import "./Static/css/primary.css";
@@ -13,10 +13,10 @@ import 'antd/dist/antd.css';
 import combineReducers from './Reducers';
 
 import apiMiddleware from './Middleware';
-const history = createHistory();
+const history = createBrowserHistory();
 const middleware = routerMiddleware(history);
 
-export default createHistory({forceRefresh: true});
+export default createBrowserHistory({forceRefresh: true});
 
 export const store = createStore( combineReducers, 
     applyMiddleware(thunk, apiMiddleware.getApi, middleware));
